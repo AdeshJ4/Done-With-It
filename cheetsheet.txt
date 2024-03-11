@@ -1,0 +1,578 @@
+Setting up the development environment
+======================================
+npx create-expo-app DoneWithIt
+cd DoneWithIt
+npx expo start
+
+
+
+
+To run your project :
+=====================
+- cd DoneWithIt
+- npm run android
+- npm run web
+- npm start
+
+
+
+https://reactnative.dev/docs/accessibilityinfo
+
+====================================================================================
+
+
+
+by default code : 
+===============
+
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <Text>Hello, world!</Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
+
+====================================================================================
+
+
+
+
+
+Start: 
+======
+import { View, Text } from "react-native";
+
+const App = () => {
+  return (
+    <View>
+      <Text>React Native</Text>
+    </View>
+  );
+};
+
+export default App;
+
+
+====================================================================================
+
+
+
+
+Text: 
+=====
+
+export default function App() {
+  const handlePress = () => {
+    console.log("Handle press");
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text numberOfLines={1} onPress={handlePress}>
+        Click On Me
+      </Text>
+      <StatusBar style="auto" />
+    </View>
+  );
+}
+
+====================================================================================
+
+Image: 
+=====
+-> we can't use onPress property on Image, for that we have to use TouchableWithoutFeedback property which have onPress property.
+
+1. static Image: 
+import React from "react";
+import { View, Image, StyleSheet, Text } from "react-native";
+
+const App = () => {
+  return (
+    <View style={styles.container}>
+      <Text>Image</Text>
+      <Image source={require("./assets/icon.png")} style={styles.image} />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff",
+  },
+  image: {
+    width: 200,
+    height: 200,
+    resizeMode: "contain", // You can adjust the resizeMode as needed
+  },
+});
+
+export default App;
+
+
+
+2. Internet Image: (write dimesions like ht, wd)
+
+import React from "react";
+import { View, Image, StyleSheet, Text } from "react-native";
+
+const App = () => {
+  return (
+    <View style={styles.container}>
+      <Text>Image</Text>
+      <Image
+        source={{ uri: "https://picsum.photos/200" }}
+        style={styles.image}
+      />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff",
+  },
+  image: {
+    width: 200,
+    height: 200,
+    resizeMode: "contain",
+  },
+});
+
+export default App;
+
+
+ex. 3: TouchableWithoutFeedback
+<TouchableWithoutFeedback onPress={() => console.log("Touch  on Image")}>
+        <Image
+          source={{ uri: "https://picsum.photos/200" }}
+          style={styles.image}
+        />
+      </TouchableWithoutFeedback>
+
+
+
+ex. 4: TouchableOpacity
+      <TouchableOpacity onPress={() => console.log("Touch  on Image")}>
+        <Image
+          source={{ uri: "https://picsum.photos/200" }}
+          style={styles.image}
+        />
+      </TouchableOpacity>
+
+
+
+ex. 5: TouchableHighlight
+      <TouchableHighlight onPress={() => console.log("Touch  on Image")}>
+        <Image
+          source={{ uri: "https://picsum.photos/200" }}
+          style={styles.image}
+        />
+      </TouchableHighlight>
+
+
+
+====================================================================================
+
+
+
+Button: 
+
+import { View, Text, Button, Alert, StyleSheet } from "react-native";
+
+const App = () => {
+  return (
+    <View style={styles.container}>
+      <Text>Text</Text>
+      <Button
+        title="Submit"
+        onPress={() => {
+          console.log("Button Pressed");
+          Alert.alert("Button Pressed.");  // or just used -> alert("message")
+        }}
+      />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+
+export default App;
+
+
+
+====================================================================================
+
+
+
+
+Alerts: 
+
+1. alert()
+      <Button
+        title="Submit"
+        onPress={() => {
+          Alert.alert("Exist", "Are you sure", [
+            { text: "Yes", onPress: () => console.log("Pressed: Yes") },
+            { text: "No", onPress: () => console.log("Pressed: No") },
+          ]);
+        }}
+      />
+
+2. prompt(): 
+
+-> Not worked on android
+
+
+
+===================================================================================================================
+
+Platform Independent code: 
+
+import {
+  View,
+  Text,
+  Button,
+  Alert,
+  StyleSheet,
+  Platform,
+  StatusBar,
+} from "react-native";
+
+const App = () => {
+  return (
+    <View style={styles.container}>
+      <Button title="Submit" />
+    </View>
+  );
+};
+console.log("PlatForm: ", Platform);
+console.log("OS: ", Platform.OS);
+console.log("Version: ", Platform.Version);
+console.log("isPad: ", Platform.isPad);
+console.log("isTV: ", Platform.isTV);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    // alignItems: "center",
+    // justifyContent: "center",
+    backgroundColor: "orange",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+  },
+});
+
+export default App;
+
+
+
+
+===================================================================================================================
+
+
+
+
+size of componet according to size of screen.
+
+screen -> size of entire scrren
+window -> size of visible application window
+
+window size is little bit smaller than screen size.
+
+code: 
+const { View, Text, StyleSheet, Dimensions } = require("react-native");
+
+const App = () => {
+  console.log(Dimensions.get("screen"));
+  return (
+    <View style={styles.container}>
+      <Text style={styles.textContainer}>Hello</Text>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  textContainer: {
+    width: "50%",
+    height: 50,
+    backgroundColor: "dodgerblue",
+  },
+});
+export default App;
+
+
+
+
+===================================================================================================================
+
+
+
+
+if its a potaits then take ht 30% but if its landscape then take 100%height
+const { View, Text, StyleSheet } = require("react-native");
+
+import { useWindowDimensions } from "react-native";
+import { useDeviceOrientation } from "@react-native-community/hooks";
+
+const App = () => {
+  const orientation = useDeviceOrientation();
+  console.log(useWindowDimensions()); // {"fontScale": 1, "height": 304, "scale": 3.375, "width": 679.4074074074074}
+  console.log("orientation is:", orientation); //  orientation is: landscape
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+    },
+    textContainer: {
+      width: "100%",
+      height: orientation === "landscape" ? "100%" : "30%",
+      backgroundColor: "dodgerblue",
+    },
+  });
+  return (
+    <View style={styles.container}>
+      <Text style={styles.textContainer}></Text>
+    </View>
+  );
+};
+
+export default App;
+
+
+
+
+
+
+
+
+===================================================================================================================
+
+
+
+
+
+Flex: 
+
+
+it takes entire screen: flex: 1
+it takes half screen: flex: 0.5
+
+
+ex. 1:
+In bellow example the parent View component will take all space available which is entire screen and its 3 child Views componets will divide that space equally into theree parts,
+    <View style={{ flex: 1, backgroundColor: "#fff" }}>
+      <View style={{ flex: 1, backgroundColor: "dodgerblue" }} />
+      <View style={{ flex: 1, backgroundColor: "gold" }} />
+      <View style={{ flex: 1, backgroundColor: "tomato" }} />
+    </View>
+
+No in this example parent View will only take half screen and in that half scrren these three child Views will take equally space.
+    <View style={{ flex: 0.5, backgroundColor: "#fff" }}>
+      <View style={{ flex: 1, backgroundColor: "dodgerblue" }} />
+      <View style={{ flex: 1, backgroundColor: "gold" }} />
+      <View style={{ flex: 1, backgroundColor: "tomato" }} />
+    </View>
+
+
+
+
+flexDirection: "row, column, row-reverse, column-reverse"
+
+    <View style={{ flex: 1, flexDirection: "column-reverse" ,backgroundColor: "#fff" }}>
+      <View
+        style={{ width: 100, height: 100, backgroundColor: "dodgerblue" }}
+      />
+      <View style={{ width: 100, height: 100, backgroundColor: "gold" }} />
+      <View style={{ width: 100, height: 100, backgroundColor: "tomato" }} />
+    </View>
+
+
+
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+      }}
+    >
+      <View
+        style={{ width: 80, height: 80, backgroundColor: "dodgerblue" }}
+      />
+      <View style={{ alignSelf: "flex-start",  width: 80, height: 80, backgroundColor: "gold" }} />
+      <View style={{ width: 80, height: 80, backgroundColor: "tomato" }} />
+    </View>
+
+
+
+
+
+
+
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "flex-start", // row wise
+        flexDirection: "row",
+        flexWrap: "wrap",
+        alignContent: "center", // center content
+      }}
+    >
+      <View style={{ width: 80, height: 150, backgroundColor: "dodgerblue" }} />
+      <View style={{ width: 80, height: 80, backgroundColor: "gold" }} />
+      <View style={{ width: 80, height: 80, backgroundColor: "tomato" }} />
+      <View style={{ width: 80, height: 80, backgroundColor: "grey" }} />
+      <View style={{ width: 80, height: 80, backgroundColor: "green" }} />
+    </View>
+
+
+
+
+
+
+relative and absolute posisioning: 
+
+
+all components in react-native have bydefault position: "realtive".
+relative: top, bottom, left, right, ex> left: 20
+relative: moving compo relative to their current position.
+ <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center", 
+        flexDirection: "row",
+      }}
+    >
+      <View style={{ top: 20, width: 80, height: 80, backgroundColor: "dodgerblue" }} />
+      <View style={{ width: 80, height: 80, backgroundColor: "gold" }} />
+      <View style={{ width: 80, height: 80, backgroundColor: "tomato" }} />
+    </View>
+
+
+absolute means moving component relative to its parent.
+ <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center", // row wise
+        flexDirection: "row",
+      }}
+    >
+      <View
+        style={{
+          position: "absolute",
+          bottom: 20,
+          width: 80,
+          height: 80,
+          backgroundColor: "dodgerblue",
+        }}
+      />
+      <View style={{ width: 80, height: 80, backgroundColor: "gold" }} />
+      <View style={{ width: 80, height: 80, backgroundColor: "tomato" }} />
+    </View>
+
+
+
+
+
+
+border: 
+
+    box: {
+      width: 100,
+      height: 100,
+      borderRadius: 50,
+      borderWidth: 5,
+      borderColor: "green",
+      backgroundColor: "dodgerblue",
+    },
+
+
+
+
+shadow: (elevation)
+    box: {
+      width: 100,
+      height: 100,
+      elevation: 50,
+      backgroundColor: "dodgerblue",
+    },
+
+
+
+
+text style:  
+    textStyle: {
+      fontFamily: "Roboto",
+      fontSize: 30,
+      fontStyle: "italic",
+      fontWeight: "150",
+      color: "tomato",
+      textTransform: "uppercase",
+      textDecorationLine: "none",
+      textAlign: "center",
+      lineHeight: 28,
+    },
+
+
+
+Icons: 
+import { StyleSheet, Text, View } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";   // by default downloaded, no need to download
+  
+const App = () => {
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  });
+  return (
+    <View style={styles.container}>
+      <MaterialCommunityIcons name="email" size={60} color="dodgerblue"/>
+      <Text>Hello React</Text>
+    </View>
+  );
+};
+
+export default App;
+
+
+
+
+
+
+
+
+
