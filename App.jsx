@@ -1,7 +1,19 @@
-import AppText from "./app/components/AppText";
+import { StyleSheet, View } from "react-native";
+import AppButton from "./app/components/AppButton";
 
 const App = () => {
-  return <AppText>Hello React Native</AppText>;
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  });
+  return (
+    <View style={styles.container}>
+      <AppButton title="Login" onPress={() => console.log("Button Pressed.")} />
+    </View>
+  );
 };
 
 export default App;
