@@ -1,18 +1,9 @@
-import { StyleSheet, View } from "react-native";
-import AppButton from "./app/components/AppButton";
+import { View, Text } from "react-native";
+import WelcomeScreen from "./app/screens/WelcomeScreen";
 
 const App = () => {
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-    },
-  });
   return (
-    <View style={styles.container}>
-      <AppButton title="Login" onPress={() => console.log("Button Pressed.")} />
-    </View>
+    <WelcomeScreen />
   );
 };
 
