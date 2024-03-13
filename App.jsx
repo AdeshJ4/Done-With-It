@@ -1,5 +1,3 @@
-import { StyleSheet, View } from "react-native";
-import Card from "./app/components/Card";
 import ListingDetailsScreen from "./app/components/ListingDetailsScreen";
 
 const App = () => {
@@ -7,6 +5,24 @@ const App = () => {
 };
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // import { StyleSheet, View } from "react-native";
 // import Card from "./app/components/Card";

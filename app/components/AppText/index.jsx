@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Platform } from "react-native";
+import { Text, StyleSheet } from "react-native";
 
 const AppText = ({ children, style }) => {
   const styles = StyleSheet.create({
