@@ -31,6 +31,9 @@ const styles = StyleSheet.create({
   title: {
     marginBottom: 7,
   },
-  subtitle: { color: colors.secondary, fontWeight: "bold" },
+  subtitle: {
+    color: colors.secondary,
+    fontWeight: "bold",
+  },
 });
 export default Card;
