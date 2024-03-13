@@ -1,5 +1,4 @@
-import MessageScreen from "./app/components/MessagesScreen";
-import ViewImageScreen from "./app/screens/ViewImageScreen";
+import MessageScreen from "./app/screens/MessageScreen";
 
 const App = () => {
   return <MessageScreen />;
