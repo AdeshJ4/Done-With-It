@@ -1,5 +1,5 @@
 import Constants from "expo-constants";
-import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
+import { SafeAreaView, StyleSheet } from "react-native";
 
 const ScreenList = ({ children }) => {
   return <SafeAreaView style={styles.screen}>{children}</SafeAreaView>;

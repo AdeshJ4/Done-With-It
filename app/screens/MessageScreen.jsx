@@ -1,7 +1,8 @@
-import { FlatList } from "react-native";
+import { FlatList, View } from "react-native";
 import ListItem from "../components/ListItem";
 import Constants from "expo-constants";
 import ScreenList from "../components/ScreenList";
+import ListItemSeparator from "../components/ListItemSeparator";
 
 const messages = [
   {
@@ -44,6 +45,7 @@ const MessageScreen = () => {
             image={item.image}
           />
         )}
+        ItemSeparatorComponent={ListItemSeparator}
       />
     </ScreenList>
   );
