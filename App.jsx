@@ -1,28 +1,11 @@
 import ListingDetailsScreen from "./app/components/ListingDetailsScreen";
+import ViewImageScreen from "./app/screens/ViewImageScreen";
 
 const App = () => {
-  return <ListingDetailsScreen />;
+  return <ViewImageScreen />;
 };
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import { StyleSheet, View } from "react-native";
 // import Card from "./app/components/Card";
