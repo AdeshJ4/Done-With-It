@@ -1,26 +1,15 @@
 import { useState } from "react";
 import { StyleSheet, Switch, View } from "react-native";
+import ScreenContainer from "./app/components/ScreenContainer";
+import AppPicker from "./app/components/AppPicker";
+import AppTextInput from "./app/components/AppTextInput";
 
 const App = () => {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => {
-    setIsEnabled((prevState) => !prevState);
-  };
   return (
-    <View style={styles.container}>
-      <Switch
-        value={isEnabled}
-        onValueChange={toggleSwitch}
-        trackColor={{ false: "#767577", true: "#81b0ff" }}
-      />
-    </View>
+    <ScreenContainer>
+      <AppPicker placeholder="Category" icon="apps" />
+      <AppTextInput placeholder="Email" icon="email" />
+    </ScreenContainer>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 export default App;
