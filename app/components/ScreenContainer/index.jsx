@@ -1,7 +1,7 @@
 import Constants from "expo-constants";
 import { SafeAreaView, StyleSheet } from "react-native";
 
-const ScreenList = ({ children }) => {
+const ScreenContainer = ({ children }) => {
   return <SafeAreaView style={styles.screen}>{children}</SafeAreaView>;
 };
 
@@ -11,4 +11,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ScreenList;
+export default ScreenContainer;
