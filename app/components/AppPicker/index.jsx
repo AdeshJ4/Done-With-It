@@ -6,14 +6,16 @@ import {
   TouchableWithoutFeedback,
   Modal,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import defaultStyles from "../../config/styles";
 import AppText from "../../components/AppText";
 import { useState } from "react";
 import AppButton from "../AppButton";
+import AppPickerItem from "../AppPickerItem/AppPickerItem";
 
-const AppPicker = ({ icon, placeholder, ...otherProps }) => {
+const AppPicker = ({ icon, items, placeholder }) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <>
@@ -39,6 +41,16 @@ const AppPicker = ({ icon, placeholder, ...otherProps }) => {
         <View
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
+          <FlatList
+            data={items}
+            keyExtractor={(item) => item.value.toString()}
+            renderItem={({ item }) => (
+              <AppPickerItem
+                label={item.label}
+                onPress={() => console.log(item)}
+              />
+            )}
+          />
           <AppButton
             title="Submit"
             onPress={() => {
