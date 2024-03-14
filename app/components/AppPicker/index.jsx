@@ -1,26 +1,54 @@
-import { View, TextInput, StyleSheet, Platform } from "react-native";
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  Platform,
+  TouchableWithoutFeedback,
+  Modal,
+  TouchableOpacity,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import defaultStyles from "../../config/styles";
 import AppText from "../../components/AppText";
+import { useState } from "react";
+import AppButton from "../AppButton";
 
 const AppPicker = ({ icon, placeholder, ...otherProps }) => {
+  const [modalVisible, setModalVisible] = useState(false);
   return (
-    <View style={styles.container}>
-      {icon && (
-        <MaterialCommunityIcons
-          name={icon}
-          size={30}
-          color={defaultStyles.colors.medium}
-          style={styles.icon}
-        />
-      )}
-      <AppText style={styles.text}>{placeholder}</AppText>
-      <MaterialCommunityIcons
-        name={"chevron-down"}
-        size={30}
-        color={defaultStyles.colors.medium}
-      />
-    </View>
+    <>
+      <TouchableWithoutFeedback onPress={() => setModalVisible(!modalVisible)}>
+        <View style={styles.container}>
+          {icon && (
+            <MaterialCommunityIcons
+              name={icon}
+              size={30}
+              color={defaultStyles.colors.medium}
+              style={styles.icon}
+            />
+          )}
+          <AppText style={styles.text}>{placeholder}</AppText>
+          <MaterialCommunityIcons
+            name={"chevron-down"}
+            size={30}
+            color={defaultStyles.colors.medium}
+          />
+        </View>
+      </TouchableWithoutFeedback>
+      <Modal visible={modalVisible} animationType="slide">
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <AppButton
+            title="Submit"
+            onPress={() => {
+              console.log("Button Pressed");
+              setModalVisible(!modalVisible);
+            }}
+          />
+        </View>
+      </Modal>
+    </>
   );
 };
 
