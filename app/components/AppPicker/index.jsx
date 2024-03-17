@@ -11,7 +11,13 @@ import AppText from "../../components/AppText";
 import { useState } from "react";
 import AppPickerItem from "../AppPickerItem/AppPickerItem";
 
-const AppPicker = ({ icon, items, placeholder }) => {
+const AppPicker = ({
+  selectedCategory,
+  onSelectCategory,
+  icon,
+  items,
+  placeholder,
+}) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <>
@@ -25,7 +31,9 @@ const AppPicker = ({ icon, items, placeholder }) => {
               style={styles.icon}
             />
           )}
-          <AppText style={styles.text}>{placeholder}</AppText>
+          <AppText style={styles.text}>
+            {selectedCategory ? selectedCategory.label : placeholder}
+          </AppText>
           <MaterialCommunityIcons
             name={"chevron-down"}
             size={30}
@@ -42,7 +50,7 @@ const AppPicker = ({ icon, items, placeholder }) => {
               <AppPickerItem
                 label={item.label}
                 onPress={() => {
-                  console.log(item);
+                  onSelectCategory(item);
                   setModalVisible(!modalVisible);
                 }}
               />
@@ -59,6 +67,7 @@ const styles = StyleSheet.create({
     backgroundColor: defaultStyles.colors.light,
     borderRadius: 25,
     flexDirection: "row",
+    alignItems: "center",
     width: "100%",
     padding: 15,
     marginVertical: 10,
