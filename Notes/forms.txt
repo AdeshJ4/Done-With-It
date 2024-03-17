@@ -1,2 +1,5 @@
 Formik - Build forms 
 Yup - Data Validation
+
+formik have builtin support for Yup.
+
