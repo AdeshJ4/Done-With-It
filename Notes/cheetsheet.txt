@@ -12,6 +12,8 @@ To run your project :
 - cd DoneWithIt
 - npm run android
 - npm run web
+
+start project : 
 - npm start
 
 
