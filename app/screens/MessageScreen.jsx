@@ -1,7 +1,6 @@
-import { FlatList, View } from "react-native";
+import { FlatList } from "react-native";
 import ListItem from "../components/ListItem";
-import Constants from "expo-constants";
-import ScreenList from "../components/ScreenList";
+import ScreenContainer from "../components/ScreenContainer";
 import ListItemSeparator from "../components/ListItemSeparator";
 
 const messages = [
@@ -32,9 +31,8 @@ const messages = [
 ];
 
 const MessageScreen = () => {
-  console.log(Constants);
   return (
-    <ScreenList>
+    <ScreenContainer>
       <FlatList
         data={messages}
         keyExtractor={(message) => message.id.toString()}
@@ -43,11 +41,12 @@ const MessageScreen = () => {
             title={item.title}
             subTitle={item.description}
             image={item.image}
+            onPress={() => console.log("message selected: ", item)}
           />
         )}
         ItemSeparatorComponent={ListItemSeparator}
       />
-    </ScreenList>
+    </ScreenContainer>
   );
 };
 

@@ -1,6 +1,8 @@
-import LoginScreen from "./app/screens/LoginScreen";
+import ScreenContainer from "./app/components/ScreenContainer";
+import MessageScreen from "./app/screens/MessageScreen";
 
 const App = () => {
-  return <LoginScreen />;
+  return <MessageScreen />;
 };
+
 export default App;
