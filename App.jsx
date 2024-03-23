@@ -1,39 +1,19 @@
-import { Button, Image, StyleSheet } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ScreenContainer from "./app/components/ScreenContainer";
-import * as ImagePicker from "expo-image-picker";
 import ImageInput from "./app/components/ImageInput";
 
 const App = () => {
   const [imageUri, setImageUri] = useState();
-  const requestPermission = async () => {
-    const res = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if (!res.granted) {
-      alert("You need to enable permission to access the library");
-    }
+
+  const handleImageUri = (uri) => {
+    setImageUri(uri);
   };
 
-  useEffect(() => {
-    requestPermission();
-  }, []);
-
-  const selectImage = async () => {
-    try {
-      const res = await ImagePicker.launchImageLibraryAsync();
-      console.log("assets: ", res.assets[0].uri);
-      if (!res.canceled) setImageUri(res.assets[0].uri);
-    } catch (err) {
-      console.log(err);
-    }
-  };
   return (
     <ScreenContainer>
-      <Button title="Select Image" onPress={selectImage} />
-      <ImageInput imageUri={imageUri} />
+      <ImageInput imageUri={imageUri} onChangeImage={handleImageUri} />
     </ScreenContainer>
   );
 };
 
 export default App;
-
-const styles = StyleSheet.create({});
