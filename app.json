@@ -28,3 +28,29 @@
     }
   }
 }
+
+
+
+
+
+
+// res: {
+//   "assets": [
+//     {
+//       "assetId": null,
+//       "base64": null,
+//       "duration": null,
+//       "exif": null,
+//       "fileName": "1000066205.jpg",
+//       "filesize": 38513,
+//       "height": 649,
+//       "mimeType": "image/jpeg",
+//       "rotation": null,
+//       "type": "image",
+//       "uri": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FDoneWithIt-f47687a7-62bd-40e9-b3db-1a94fcd8a6c0/ImagePicker/52939fa4-b112-4b05-9879-9e3f293bd1f5.jpeg",
+//       "width": 639
+//     }
+//   ],
+//   "canceled": false
+// }
+// res.assets[0].uri

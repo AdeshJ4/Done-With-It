@@ -1,0 +1,18 @@
+1. Native device features (camera, location, Contacts)
+2. Navigation
+3. Networking
+4. Offline support
+5. Authentication and Authorization
+6. Push Notification
+7. Distribution
+
+
+
+
+
+
+
+Native Device features in your react native app 
+
+
+ bare React Native app -> App without expo 

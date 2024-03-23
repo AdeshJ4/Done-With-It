@@ -5,7 +5,8 @@ cd DoneWithIt
 npx expo start
 
 
-
+expo login: 
+userName : adesh1461
 
 To run your project :
 =====================
