@@ -2,6 +2,7 @@ import { Button, Image, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
 import ScreenContainer from "./app/components/ScreenContainer";
 import * as ImagePicker from "expo-image-picker";
+import ImageInput from "./app/components/ImageInput";
 
 const App = () => {
   const [imageUri, setImageUri] = useState();
@@ -28,7 +29,7 @@ const App = () => {
   return (
     <ScreenContainer>
       <Button title="Select Image" onPress={selectImage} />
-      <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
+      <ImageInput imageUri={imageUri} />
     </ScreenContainer>
   );
 };
