@@ -1,17 +1,21 @@
 import React, { useState } from "react";
 import ScreenContainer from "./app/components/ScreenContainer";
-import ImageInput from "./app/components/ImageInput";
+import ImageInputList from "./app/components/ImageInputList";
 
 const App = () => {
-  const [imageUri, setImageUri] = useState();
+  const [imageUris, setImageUris] = useState([]);
 
-  const handleImageUri = (uri) => {
-    setImageUri(uri);
+  const handleAdd = (uri) => {
+    setImageUris([...imageUris, uri]);
   };
+
+  const handleRemove = (uri) => {
+    setImageUris(imageUris.filter(imageUri => imageUri !== uri))
+  }
 
   return (
     <ScreenContainer>
-      <ImageInput imageUri={imageUri} onChangeImage={handleImageUri} />
+      <ImageInputList imageUris={imageUris} onAddImage={handleAdd} onRemoveImage={handleRemove}/>
     </ScreenContainer>
   );
 };

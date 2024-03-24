@@ -24,7 +24,10 @@ const ImageInput = ({ imageUri, onChangeImage }) => {
 
   const selectImage = async () => {
     try {
-      const res = await ImagePicker.launchImageLibraryAsync();
+      const res = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        quality: 0.5,
+      });
       if (!res.canceled) onChangeImage(res.assets[0].uri);
     } catch (err) {
       console.log(err);
@@ -35,7 +38,7 @@ const ImageInput = ({ imageUri, onChangeImage }) => {
     if (!imageUri) selectImage();
     else
       Alert.alert("Delete", "Are you sure you want to delete this image?", [
-        { text: "Yes", onPress: () => onChangeImage(null) },
+        { text: "Yes", onPress: () => onChangeImage(imageUri) },
         { text: "No" },
       ]);
   };
@@ -66,6 +69,7 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     overflow: "hidden",
+    marginHorizontal: 3
   },
   image: {
     height: "100%",
