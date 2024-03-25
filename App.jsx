@@ -41,8 +41,16 @@ const Stack = createNativeStackNavigator();
 
 const StackNavigator = () => (
   <Stack.Navigator initialRouteName="Tweets">
-    <Stack.Screen name="Tweets" component={Tweets} />
-    <Stack.Screen name="TweetDetails" component={TweetDetails} />
+    <Stack.Screen
+      name="Tweets"
+      component={Tweets}
+      options={{ title: "List Of Tweets" }}
+    />
+    <Stack.Screen
+      name="TweetDetails"
+      component={TweetDetails}
+      options={({ route }) => ({ title: route.params.tweetName })}
+    />
   </Stack.Navigator>
 );
 
