@@ -40,11 +40,27 @@ const Link = () => {
 const Stack = createNativeStackNavigator();
 
 const StackNavigator = () => (
-  <Stack.Navigator initialRouteName="Tweets">
+  <Stack.Navigator
+    initialRouteName="Tweets"
+    screenOptions={{
+      title: "List Of Tweets",
+      headerStyle: { backgroundColor: "dodgerblue" },
+      headerTintColor: "white",
+      // headerShown: false,
+    }}
+  >
     <Stack.Screen
       name="Tweets"
       component={Tweets}
-      options={{ title: "List Of Tweets" }}
+      options={
+        {
+          // you can apply it to specific screen or globally inside Stack.Navigator.
+          // title: "List Of Tweets",
+          // headerStyle: { backgroundColor: "dodgerblue" },
+          // headerTintColor: "white",
+          // headerShown: false,
+        }
+      }
     />
     <Stack.Screen
       name="TweetDetails"
