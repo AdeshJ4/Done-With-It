@@ -1,6 +1,7 @@
-import { Button, Text } from "react-native";
+import { Button, Text, View } from "react-native";
 import ScreenContainer from "./app/components/ScreenContainer";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 
 // only Screen Component have access to "navigation" property.
@@ -27,6 +28,22 @@ const TweetDetails = ({ route }) => {
   );
 };
 
+const Account = () => {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text>Account</Text>
+    </View>
+  );
+};
+
+const Feed = () => {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text>Feed</Text>
+    </View>
+  );
+};
+
 const Link = () => {
   const navigation = useNavigation();
   return (
@@ -38,30 +55,11 @@ const Link = () => {
 };
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const StackNavigator = () => (
-  <Stack.Navigator
-    initialRouteName="Tweets"
-    screenOptions={{
-      title: "List Of Tweets",
-      headerStyle: { backgroundColor: "dodgerblue" },
-      headerTintColor: "white",
-      // headerShown: false,
-    }}
-  >
-    <Stack.Screen
-      name="Tweets"
-      component={Tweets}
-      options={
-        {
-          // you can apply it to specific screen or globally inside Stack.Navigator.
-          // title: "List Of Tweets",
-          // headerStyle: { backgroundColor: "dodgerblue" },
-          // headerTintColor: "white",
-          // headerShown: false,
-        }
-      }
-    />
+  <Stack.Navigator initialRouteName="Tweets">
+    <Stack.Screen name="Tweets" component={Tweets} />
     <Stack.Screen
       name="TweetDetails"
       component={TweetDetails}
@@ -70,10 +68,17 @@ const StackNavigator = () => (
   </Stack.Navigator>
 );
 
+const TabNavigator = () => (
+  <Tab.Navigator>
+    <Tab.Screen name="Feed" component={Feed} />
+    <Tab.Screen name="Account" component={Account} />
+  </Tab.Navigator>
+);
+
 const App = () => {
   return (
     <NavigationContainer>
-      <StackNavigator />
+      <TabNavigator />
     </NavigationContainer>
   );
 };
