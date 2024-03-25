@@ -8,19 +8,21 @@ const Tweets = ({ navigation }) => {
   return (
     <ScreenContainer>
       <Text>Tweet</Text>
-      <Link />
       <Button
         title="View Tweet"
-        onPress={() => navigation.navigate("TweetDetails")}
+        onPress={() =>
+          navigation.navigate("TweetDetails", { id: 101, tweetName: "Anime" })
+        }
       />
     </ScreenContainer>
   );
 };
 
-const TweetDetails = () => {
+const TweetDetails = ({ route }) => {
+  console.log("route: ", route); // route:  {"key": "TweetDetails-hLNy3btIvCKgALIo7e4Q-", "name": "TweetDetails", "params": {"id": 101, "tweetName": "Anime"}, "path": undefined}
   return (
     <ScreenContainer>
-      <Text>Tweet Details</Text>
+      <Text>Tweet Details: {route.params.tweetName}</Text>
     </ScreenContainer>
   );
 };
