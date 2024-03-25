@@ -1,4 +1,4 @@
-import AppText from "../AppText";
+import AppText from "../../AppText";
 
 const ErrorMessage = ({ error, visible }) => {
   if (!error || !visible) return null;

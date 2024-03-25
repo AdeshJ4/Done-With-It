@@ -9,22 +9,25 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import defaultStyles from "../../config/styles";
-import AppText from "../../components/AppText";
+import AppText from "../AppText";
 import { useState } from "react";
-import AppPickerItem from "../AppPickerItem/AppPickerItem";
+import PickerItem from "../PickerItem";
 
 const AppPicker = ({
-  selectedCategory,
-  onSelectCategory,
   icon,
   items,
+  numberOfColumns = 1,
+  onSelectItem,
+  PickerItemComponent = PickerItem,
   placeholder,
+  selectedItem,
+  width = "100%",
 }) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <>
       <TouchableWithoutFeedback onPress={() => setModalVisible(!modalVisible)}>
-        <View style={styles.container}>
+        <View style={[styles.container, { width }]}>
           {icon && (
             <MaterialCommunityIcons
               name={icon}
@@ -33,9 +36,11 @@ const AppPicker = ({
               style={styles.icon}
             />
           )}
-          <AppText style={styles.text}>
-            {selectedCategory ? selectedCategory.label : placeholder}
-          </AppText>
+          {selectedItem ? (
+            <AppText style={styles.text}>{selectedItem.label}</AppText>
+          ) : (
+            <AppText style={styles.placeholder}>{placeholder}</AppText>
+          )}
           <MaterialCommunityIcons
             name={"chevron-down"}
             size={30}
@@ -48,12 +53,14 @@ const AppPicker = ({
           <FlatList
             data={items}
             keyExtractor={(item) => item.value}
+            numColumns={numberOfColumns}
             renderItem={({ item }) => (
-              <AppPickerItem
+              <PickerItemComponent
+                item={item}
                 label={item.label}
                 onPress={() => {
-                  onSelectCategory(item);
                   setModalVisible(!modalVisible);
+                  onSelectItem(item);
                 }}
               />
             )}
@@ -69,8 +76,8 @@ const styles = StyleSheet.create({
     backgroundColor: defaultStyles.colors.light,
     borderRadius: 25,
     flexDirection: "row",
-    alignItems: "center",
-    width: "100%",
+    // alignItems: "center",
+    // width: "100%",
     padding: 15,
     marginVertical: 10,
   },
@@ -91,51 +98,14 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 20,
   },
-
   icon: { marginRight: 10 },
+  placeholder: {
+    color: defaultStyles.colors.medium,
+    flex: 1,
+  },
   text: {
     flex: 1,
   },
 });
 
 export default AppPicker;
-
-// App.jsx - (parent component)
-
-/*
-import ScreenContainer from "./app/components/ScreenContainer";
-import AppPicker from "./app/components/AppPicker";
-import AppTextInput from "./app/components/AppTextInput";
-import { useState } from "react";
-
-const categories = [
-  { label: "Furniture", value: 1 },
-  { label: "Clothing", value: 2 },
-  { label: "Cameras", value: 3 },
-];
-
-const App = () => {
-  const [category, setCategory] = useState();
-
-  const handleSelectCategory = (category) => {
-    setCategory(category);
-  };
-
-  return (
-    <ScreenContainer>
-      <AppPicker
-        selectedCategory={category}
-        onSelectCategory={handleSelectCategory}
-        placeholder="Category"
-        icon="apps"
-        items={categories}
-      />
-      <AppTextInput placeholder="Email" icon="email" />
-    </ScreenContainer>
-  );
-};
-export default App;
-
-
-
-*/
