@@ -1,23 +1,18 @@
-import { useState } from "react";
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  TouchableWithoutFeedback,
-} from "react-native";
+import React, { useState } from "react";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
 const App = () => {
-  const [txt, setTxt] = useState("Click Bellow");
+  const [txt, setTxt] = useState("Click Below");
+
   return (
     <View style={styles.container}>
       <Text>{txt}</Text>
-      <TouchableWithoutFeedback onPress={() => setTxt("Clicked")}>
-        <Image
-          source={require("./assets/adaptive-icon.png")}
-          style={styles.image}
-        />
-      </TouchableWithoutFeedback>
+      <TouchableOpacity
+        style={styles.touchable}
+        onPress={() => setTxt("Clicked")}
+      >
+        <Image source={require("./assets/img3.jpeg")} style={styles.image} />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -28,11 +23,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  touchable: {
+    width: 100,
+    height: 100,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   image: {
     width: "100%",
     height: "100%",
-    maxHeight: 100,
-    maxWidth: 100,
   },
 });
+
 export default App;
