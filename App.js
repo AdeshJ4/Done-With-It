@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity, Pressable } from "react-native";
 
 const App = () => {
   const [txt, setTxt] = useState("Click Below");
@@ -7,12 +7,12 @@ const App = () => {
   return (
     <View style={styles.container}>
       <Text>{txt}</Text>
-      <TouchableOpacity
+      <Pressable
         style={styles.touchable}
         onPress={() => setTxt("Clicked")}
       >
         <Image source={require("./assets/img3.jpeg")} style={styles.image} />
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 };
