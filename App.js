@@ -1,24 +1,23 @@
-import React, { useState } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { useState } from "react";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableWithoutFeedback,
+} from "react-native";
 
 const App = () => {
-  const [titleText, setTitleText] = useState("Bird's Nest");
-  const bodyText = "This is not really a bird nest.";
-
-  const onPressTitle = () => {
-    setTitleText("Bird's Nest [pressed]");
-  };
-
+  const [txt, setTxt] = useState("Click Bellow");
   return (
     <View style={styles.container}>
-      <Text style={styles.baseText}>
-        <Text style={styles.titleText} onPress={onPressTitle}>
-          {titleText}
-          {"\n"}
-          {"\n"}
-        </Text>
-        <Text numberOfLines={5}>{bodyText}</Text>
-      </Text>
+      <Text>{txt}</Text>
+      <TouchableWithoutFeedback onPress={() => setTxt("Clicked")}>
+        <Image
+          source={require("./assets/adaptive-icon.png")}
+          style={styles.image}
+        />
+      </TouchableWithoutFeedback>
     </View>
   );
 };
@@ -29,13 +28,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  baseText: {
-    fontFamily: "Cochin",
-  },
-  titleText: {
-    fontSize: 20,
-    fontWeight: "bold",
+  image: {
+    width: "100%",
+    height: "100%",
+    maxHeight: 100,
+    maxWidth: 100,
   },
 });
-
 export default App;
