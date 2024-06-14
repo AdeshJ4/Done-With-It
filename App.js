@@ -1,6 +1,7 @@
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, Platform, StatusBar } from "react-native";
 
 const App = () => {
+  console.log("Platform : ", Platform);
   return (
     <View style={styles.container}>
       <Text>Hello React</Text>
@@ -13,6 +14,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
 });
 
